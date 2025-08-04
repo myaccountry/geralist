@@ -77,6 +77,10 @@ public:
 		return array[index];
 	};
 
+	list operator()(size_t left = 0, size_t right = size(), ll step = 1) const {
+		return list<type>(read(left, right, step));
+	};
+
 	friend ostream &operator<<(ostream &out, const list &obj) {
 		out << '[' << obj[0];
 		for (size_t i = 1; i < obj.size(); i++)
@@ -107,12 +111,13 @@ public:
 		array = new_array;
 	};
 	
-	list read(size_t left, size_t right) {
+	list read(size_t left, size_t right, ll step = 1) const {
 		list<type> new_list;
 		new_list.expand(right - left);
 		size_t j = 0;
-		for (size_t i = left; i < right; i++)
+		for (size_t i = left; i < right; i += step)
 			new_list[j++] = array[i];
+		new_list.expand(j - new_list.len);
 		return new_list;
 	};
 	
