@@ -1,4 +1,5 @@
 #include <iostream>
+#pragma once
 using namespace std;
 using ll = long long;
 
@@ -24,6 +25,12 @@ public:
 		expand(init.size());
 		for (size_t i = 0; i < len; i++)
 		    array[i] = *(init.begin() + i);
+	};
+
+	list(const list &obj) {
+		expand(obj.size());
+		for (size_t i = 0; i < len; i++)
+			array[i] = obj[i];
 	};
 
 	~list() {
@@ -71,6 +78,43 @@ public:
 
 	list operator+(type elem) {
 		return merge(*this, list(elem));
+	};
+
+	bool operator==(const list &obj) const {
+		if (len != obj.len)
+			return false;
+		for (size_t i = 0; i < len; i++)
+			if (array[i] != obj[i])
+				return false;
+		return true;
+	};
+
+	bool operator!=(const list &obj) const {
+		return !(obj == *this);
+	};
+
+	bool operator>=(const list &obj) const {
+		if (len >= obj.len)
+			return true;
+		return false;
+	};
+
+	bool operator<=(const list &obj) const {
+		if (len <= obj.len)
+			return true;
+		return false;
+	};
+
+	bool operator>(const list &obj) const {
+		if (len > obj.len)
+			return true;
+		return false;
+	};
+
+	bool operator<(const list &obj) const {
+		if (len < obj.len)
+			return true;
+		return false;
 	};
 
 	type &operator[](size_t index) const {
@@ -149,6 +193,20 @@ public:
 			left++;
 			right--;
 		}
+	};
+
+	bool find(type elem) const {
+		for (size_t i = 0; i < len; i++)
+			if (elem == array[i])
+				return true;
+		return false;
+	};
+
+	long long index(type elem) const {
+		for (size_t i = 0; i < len; i++)
+			if (elem == array[i])
+				return i;
+		return -1;
 	};
 	
 	void pop_first() {
