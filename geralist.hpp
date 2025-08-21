@@ -1,5 +1,4 @@
 #include <iostream>
-#pragma once
 using namespace std;
 using ll = long long;
 
@@ -142,6 +141,7 @@ public:
 		else
 			for (size_t i = 0; i < len; i++)	
 				new_array[i] = array[i];
+		delete[] array;
 		array = new_array;
 		len += cnt;
 	};

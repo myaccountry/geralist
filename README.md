@@ -28,7 +28,7 @@ make all
   
 **Use it!**  
 ```C++
-#include <geralist.h>
+#include <geralist.hpp>
 ```  
 **On compilation add**   
 ```Shell
