@@ -1,5 +1,4 @@
 #include <iostream>
-using namespace std;
 using ll = long long;
 
 template <typename type>
@@ -20,7 +19,7 @@ public:
 			array[i] = arr[i];
 	};
 	
-	list(initializer_list<type> init) {
+	list(std::initializer_list<type> init) {
 		expand(init.size());
 		for (size_t i = 0; i < len; i++)
 		    array[i] = *(init.begin() + i);
@@ -42,7 +41,7 @@ public:
 		return *this;
 	};
 
-	list &operator=(initializer_list<type> init) {
+	list &operator=(std::initializer_list<type> init) {
 		*this = list(init);
 		return *this;
 	};
@@ -57,7 +56,7 @@ public:
 		return *this;
 	};
 
-	list &operator+=(initializer_list<type> init) {
+	list &operator+=(std::initializer_list<type> init) {
 		*this += list(init);
 		return *this;
 	};
@@ -71,7 +70,7 @@ public:
 		return merge(*this, obj);
 	};
 
-	list operator+(initializer_list<type> init) {
+	list operator+(std::initializer_list<type> init) {
 		return merge(*this, list(init));
 	};
 
@@ -124,7 +123,7 @@ public:
 		return list<type>(read(left, right, step));
 	};
 
-	friend ostream &operator<<(ostream &out, const list &obj) {
+	friend std::ostream &operator<<(std::ostream &out, const list &obj) {
 		out << '[' << obj[0];
 		for (size_t i = 1; i < obj.size(); i++)
 			out << ", " << obj[i];
